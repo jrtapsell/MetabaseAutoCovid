@@ -38,7 +38,7 @@ export MB_DB_HOST="localhost"
 java -jar ./metabase.jar 2> /dev/null > /dev/null &
 
 echo "Configuring Metabase"
-python3 ./python/configure.py
+python3 ./python/setupMetabase.py
 
 echo "Finished"
 wait %1
