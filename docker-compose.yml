@@ -2,8 +2,6 @@ version: "3.7"
 services: 
   run:
     build: "./"
-    volumes:
-      - "./tmp/data:/tmp/data"
-      - "./tmp/transformed:/tmp/transformed"
+    read_only: true
     ports:
       - '3000:3000'
