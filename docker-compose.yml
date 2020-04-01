@@ -1,0 +1,9 @@
+version: "3.7"
+services: 
+  run:
+    build: "./"
+    volumes:
+      - "./tmp/data:/tmp/data"
+      - "./tmp/transformed:/tmp/transformed"
+    ports:
+      - '3000:3000'

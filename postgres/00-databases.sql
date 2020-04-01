@@ -1,0 +1,2 @@
+CREATE DATABASE covid19;
+CREATE DATABASE metabase;
