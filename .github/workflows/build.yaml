@@ -8,5 +8,5 @@ jobs:
     # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
-      - name: Echo the greeting's time
-        run: docker build -t docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:latest
+      - name: Build the image
+        run: docker build -t docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:latest ./
