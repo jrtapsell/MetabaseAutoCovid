@@ -19,8 +19,9 @@ USER appuser
 
 USER root
 RUN mkdir -p /var/lib/nginx/logs/ && chown -R appuser:appgroup /var/lib/nginx/
-RUN ln -s /dev/shm/fake_tmp/nginx_run /run/nginx
-RUN ln -s /dev/shm/fake_tmp/postgresql /run/
+RUN mkdir /tmp/postgresql && ln -s /tmp/postgresql /run/ && chown appuser:appgroup /tmp/postgresql
+RUN rm -rf /var/lib/nginx/tmp && ln -s /tmp/nginx_tmp /var/lib/nginx/tmp
+RUN mkdir -p /tmp/nginx_run/nginx && ln -s /tmp/nginx_run/nginx /run/ && chown appuser:appgroup /tmp/nginx_run/nginx
 USER appuser
 
 ADD ./python/* ./python/
@@ -29,9 +30,5 @@ ADD ./postgres/* ./postgres/
 ADD ./entrypoint.sh ./
 
 ADD ./nginx/nginx.conf /etc/nginx/nginx.conf
-RUN rm -rf /var/lib/nginx/tmp && ln -s /tmp/nginx_tmp /var/lib/nginx/tmp
-VOLUME tmp
-
-RUN ln -s /dev/shm/fake_tmp/data /tmp
 
 CMD ["/app/entrypoint.sh"]

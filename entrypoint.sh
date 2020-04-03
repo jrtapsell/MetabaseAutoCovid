@@ -3,24 +3,6 @@ set -e
 set -u
 #set -x
 
-mkdir -p /dev/shm/fake_tmp/postgresql
-ln -s /dev/shm/fake_tmp/postgresql /tmp/postgresql
-
-mkdir -p /dev/shm/fake_tmp/data
-ln -s /dev/shm/fake_tmp/data /tmp/
-
-mkdir -p /dev/shm/fake_tmp/transformed
-ln -s /dev/shm/fake_tmp/transformed /tmp/
-
-mkdir -p /dev/shm/fake_tmp/nginx
-ln -s /dev/shm/fake_tmp/nginx /tmp/
-
-mkdir -p /dev/shm/fake_tmp/nginx_run
-ln -s /dev/shm/fake_tmp/nginx_run /run/nginx
-
-mkdir -p /dev/shm/fake_tmp/nginx_tmp
-ln -s /dev/shm/fake_tmp/nginx_tmp /tmp/nginx_tmp
-
 export PGDATA="/tmp/pgsql/data"
 export PGPASSWORD=$(cat /app/postgres/postgresPassword.txt)
 export PGUSER="postgres"
@@ -33,16 +15,19 @@ function py {
 }
 
 echo "Downloading the data"
+mkdir /tmp/data
 py ./python/download.py
 
 echo "Converting the data"
+mkdir /tmp/transformed
 py ./python/transform.py
 
 echo "Setting up Postgres"
+mkdir /tmp/postgresql
 initdb -A md5 --username=postgres --pwfile=/app/postgres/postgresPassword.txt
 
 echo "Starting Postgres"
-ls -lagh /tmp
+mkdir -p /tmp/run/postgresql/
 postgres 2> /dev/null > /dev/null &
 sleep 2
 
@@ -64,9 +49,12 @@ export MB_JETTY_PORT="3001"
 java -jar ./metabase.jar 2> /dev/null > /dev/null &
 
 echo "Configuring Metabase"
+mkdir /tmp/nginx
 py ./python/setupMetabase.py
 
 echo "Starting NGINX"
+mkdir /tmp/nginx_tmp
+mkdir -p /tmp/nginx_run/nginx
 nginx -g 'daemon off;'
 echo "Finished"
 
