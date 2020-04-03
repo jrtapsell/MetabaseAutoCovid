@@ -8,6 +8,7 @@ jobs:
     # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: "Hadolint"
         uses: brpaz/hadolint-action@master
   python_lint:
@@ -15,5 +16,6 @@ jobs:
     # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Python linting
         uses: konstruktoid/action-pylint@master
