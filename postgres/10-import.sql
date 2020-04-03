@@ -1,4 +1,4 @@
-\c covid19;
+\c :covid_db;
 
 COPY raw_confirmed(region,country,lat,lon,date,value) FROM '/tmp/transformed/Confirmed.csv' DELIMITER ',' CSV HEADER;
 COPY raw_death(region,country,lat,lon,date,value) FROM '/tmp/transformed/Deaths.csv' DELIMITER ',' CSV HEADER;

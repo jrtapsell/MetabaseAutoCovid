@@ -36,18 +36,10 @@ def run_setup():
         },
         "token": setup_token,
         "user": {
-            "email": "example@example.com",
-            "first_name": "Example",
-            "password": "password123",
+            "email": "admin@example.com",
+            "first_name": "Admin",
+            "password": os.environ["META_ADMIN_PASS"],
             "last_name": "User"
-        },
-        "engine": "postgres",
-        "database": {
-            "host": os.environ["PGHOST"],
-            "dbname": "covid19",
-            "port": 5432,
-            "user": os.environ["PGUSER"],
-            "password": os.environ["PGPASSWORD"]
         }
     }))["id"]
 
@@ -58,12 +50,12 @@ def run_setup():
     parse(r.delete("%s/database/1" % METABASE_BASE))
 
     parse(r.post("%s/database/" % METABASE_BASE, json={
-        "name": "COVID19",
+        "name": "COVID 19",
         "engine": "postgres",
         "details": {
             "host": os.environ["PGHOST"],
-            "dbname": "covid19",
-            "port": 5432,
+            "dbname": os.environ["COVID_DB"],
+            "port": os.environ["PGPORT"],
             "user": os.environ["PGUSER"],
             "password": os.environ["PGPASSWORD"]
         }

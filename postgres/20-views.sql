@@ -1,4 +1,4 @@
-\c covid19;
+\c :covid_db;
 
 CREATE MATERIALIZED VIEW i100_countries as (
     select min(date) as date, country from raw_confirmed where value >= 100 group by country 

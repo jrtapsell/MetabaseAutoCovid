@@ -7,3 +7,5 @@ services:
       - '127.0.0.01:3000:3000'
     tmpfs:
       /tmp
+    command: 
+      "./python/validate.py"

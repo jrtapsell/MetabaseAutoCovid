@@ -1,2 +1,2 @@
-CREATE DATABASE covid19;
-CREATE DATABASE metabase;
+CREATE DATABASE :covid_db;
+CREATE DATABASE :meta_db;

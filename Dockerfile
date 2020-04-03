@@ -9,7 +9,7 @@ WORKDIR /app
 RUN wget -O ./metabase.jar https://downloads.metabase.com/latest/metabase.jar
 
 USER root
-RUN apk add openjdk8-jre python3 bash postgresql nginx jq curl
+RUN apk add openjdk8-jre python3 bash postgresql nginx jq curl postgresql-dev gcc python3-dev musl-dev openssl
 USER appuser
 
 ADD ./python/requirements.txt ./python/requirements.txt
@@ -31,4 +31,5 @@ ADD ./entrypoint.sh ./
 
 ADD ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-CMD ["/app/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["sleep infinity"]

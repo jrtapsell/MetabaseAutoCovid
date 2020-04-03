@@ -1,4 +1,4 @@
-\c covid19;
+\c :covid_db;
 
 CREATE TABLE raw_confirmed (
     region TEXT,
