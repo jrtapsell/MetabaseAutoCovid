@@ -3,7 +3,7 @@ set -e
 set -u
 #set -x
 
-mkdir /tmp/secrets/
+mkdir -p /tmp/secrets/
 
 export PGDATA="/tmp/pgsql/data"
 export PGPASSWORD="$(openssl rand -base64 20)"
@@ -31,15 +31,15 @@ function py {
 }
 
 echo "Downloading the data"
-mkdir /tmp/data
+mkdir -p /tmp/data
 py ./python/download.py
 
 echo "Converting the data"
-mkdir /tmp/transformed
+mkdir -p /tmp/transformed
 py ./python/transform.py
 
 echo "Setting up Postgres"
-mkdir /tmp/postgresql
+mkdir -p /tmp/postgresql
 initdb -A md5 --username=postgres --pwfile=/tmp/secrets/pgpassword 2> /dev/null > /dev/null
 
 echo "Starting Postgres"
@@ -55,14 +55,14 @@ do
 done
 
 echo "Starting Metabase"
-java -jar ./metabase.jar 2> /dev/null > /dev/null &
+java -jar ./metabase.jar # 2> /dev/null > /dev/null &
 
 echo "Configuring Metabase"
-mkdir /tmp/nginx
+mkdir -p /tmp/nginx
 py ./python/setupMetabase.py
 
 echo "Starting NGINX"
-mkdir /tmp/nginx_tmp
+mkdir -p /tmp/nginx_tmp
 mkdir -p /tmp/nginx_run/nginx
 nginx -g 'daemon off;' 2> /dev/null > /dev/null &
 echo "Finished"

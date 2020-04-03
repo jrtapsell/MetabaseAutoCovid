@@ -2,8 +2,8 @@ version: "3.7"
 services: 
   run:
     build: "./"
-    read_only: true
+    #read_only: true
     ports:
       - '127.0.0.01:3000:3000'
-    tmpfs:
-      /tmp
+    # tmpfs:
+    #   /tmp
