@@ -10,18 +10,19 @@ RUN wget -O ./metabase.jar https://downloads.metabase.com/v0.34.3/metabase.jar
 
 USER root
 RUN apk add \
-    openjdk8=8.242.08-r1 \
+    openjdk8=8.242.08-r0 \
     python3=3.8.2-r0 \
-    bash=5.0.16-r0 \
-    postgresql=12.2-r3 \
-    nginx=1.16.1-r8 \
-    jq=1.6-r1 \
-    curl=7.69.1-r0 \
-    postgresql-dev=12.2-r3 \
-    gcc=9.3.0-r1 \
+    bash=5.0.11-r1 \
+    postgresql=12.2-r0 \
+    nginx=1.16.1-r6 \
+    jq=1.6-r0 \
+    curl=7.67.0-r0 \
+    postgresql-dev=12.2-r0 \
+    gcc=9.2.0-r4 \
     python3-dev=3.8.2-r0 \
-    musl-dev=1.1.24-r5 \
-    openssl=1.1.1f-r0 --no-cache && rm -rf /var/cache/apk/*
+    musl-dev=1.1.24-r2 \
+    openssl=1.1.1d-r3 \
+    --no-cache && rm -rf /var/cache/apk/*
 USER appuser
 
 COPY ./python/requirements.txt ./python/requirements.txt
