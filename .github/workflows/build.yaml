@@ -17,4 +17,4 @@ jobs:
       - name: Login to GitHub Packages
         run: docker login docker.pkg.github.com -u jrtapsell -p "$GITHUB_TOKEN"
       - name: Push the image
-        run: docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA
+        run: docker push docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA
