@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import requests
 from common import files
-
-downloadBase = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/"
+repoPath = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19"
+directory = "csse_covid_19_data/csse_covid_19_time_series/"
+downloadBase = "%s/master/%s" % (repoPath, directory)
 
 for item in files:
     url = downloadBase + item["sourceName"]

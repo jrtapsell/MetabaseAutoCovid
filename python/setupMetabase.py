@@ -1,20 +1,31 @@
 #!/usr/bin/env python3
 import requests
 import time
-import json
 import os
 
 METABASE_BASE = 'http://localhost:3001/api'
 SETUP_KEY_URL = '%s/session/properties' % METABASE_BASE
 SETUP_URL = '%s/setup/' % METABASE_BASE
+
+
 def parse(response):
     if (response.status_code // 100) != 2:
-        raise Exception('Got back status code %s: %s\n%s' % (response.status_code, response.url, response.text))
+        raise Exception(
+            'Got back status code %s: %s\n%s' % (
+                response.status_code,
+                response.url,
+                response.text
+            )
+        )
     if len(response.text) > 0:
         return response.json()
     return None
+
+
 def p(item):
     print(item, flush=True)
+
+
 def wait_for_metabase():
     while (True):
         try:
@@ -24,6 +35,7 @@ def wait_for_metabase():
         except Exception:
             p(">>> Trying again in 10 seconds")
             time.sleep(10)
+
 
 def run_setup():
     p(">>> Getting the setup token")
@@ -73,7 +85,7 @@ def run_setup():
             }
         }
         """ % (session_key, session_key))
-    
+
 
 def main():
     p(">>> Waiting for Metabase")
@@ -81,5 +93,6 @@ def main():
     p(">>> Setting up Metabase")
     run_setup()
     p(">>> Done")
+
 
 main()

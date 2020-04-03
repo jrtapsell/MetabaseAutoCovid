@@ -8,11 +8,16 @@ dataset = {}
 
 date_regex = re.compile(r"(?P<month>[0-9]+)/(?P<day>[0-9]+)/(?P<year>[0-9]+)")
 
+
 def normalize_date(date):
     parsed = re.match(date_regex, date)
     parsed_date = parsed.groupdict()
-    textual = "20{:0>2}-{:0>2}-{:0>2}".format(parsed_date["year"], parsed_date["month"], parsed_date["day"])
+    textual = "20{:0>2}-{:0>2}-{:0>2}".format(
+        parsed_date["year"],
+        parsed_date["month"],
+        parsed_date["day"])
     return textual
+
 
 def expand(row):
     region = row["Province/State"]
@@ -30,10 +35,12 @@ def expand(row):
 
 
 for item in files:
-    with open(item["downloadName"], 'r' ) as inFile:
+    with open(item["downloadName"], 'r') as inFile:
         reader = csv.DictReader(inFile)
         lines = itertools.chain(*[expand(line) for line in reader])
-    with open(item["transformedName"], 'w' ) as outFile:
-        writer = csv.DictWriter(outFile, ["region", "country", "lat", "lon", "date", "value"])
+    with open(item["transformedName"], 'w') as outFile:
+        writer = csv.DictWriter(
+            outFile,
+            ["region", "country", "lat", "lon", "date", "value"])
         writer.writeheader()
         writer.writerows(lines)
