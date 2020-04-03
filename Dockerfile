@@ -6,7 +6,7 @@ RUN chown appuser:appgroup /app
 
 USER appuser
 WORKDIR /app
-RUN wget -O ./metabase.jar https://downloads.metabase.com/latest/metabase.jar
+RUN wget -O ./metabase.jar https://downloads.metabase.com/v0.34.3/metabase.jar
 
 USER root
 RUN apk add openjdk8 python3 bash postgresql nginx jq curl postgresql-dev gcc python3-dev musl-dev openssl

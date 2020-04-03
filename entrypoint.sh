@@ -55,7 +55,7 @@ do
 done
 
 echo "Starting Metabase"
-java -jar ./metabase.jar # 2> /dev/null > /dev/null &
+java -Xmx1g -Xms1g -jar ./metabase.jar 2> /dev/null > /dev/null &
 
 echo "Configuring Metabase"
 mkdir -p /tmp/nginx
