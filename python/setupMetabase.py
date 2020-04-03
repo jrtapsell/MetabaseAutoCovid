@@ -21,7 +21,7 @@ def wait_for_metabase():
             d = parse(requests.get(SETUP_KEY_URL, timeout=1))
             if d["setup_token"]:
                 break
-        except Exception as e:
+        except Exception:
             p(">>> Trying again in 10 seconds")
             time.sleep(10)
 
