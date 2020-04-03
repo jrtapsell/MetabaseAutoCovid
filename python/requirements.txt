@@ -1,2 +1,2 @@
-requests=2.23.0
-psycopg2=2.8.4git
+requests==2.23.0
+psycopg2==2.8.4git
