@@ -24,7 +24,7 @@ py ./python/transform.py
 
 echo "Setting up Postgres"
 mkdir /tmp/postgresql
-initdb -A md5 --username=postgres --pwfile=/app/postgres/postgresPassword.txt
+initdb -A md5 --username=postgres --pwfile=/app/postgres/postgresPassword.txt  2> /dev/null > /dev/null
 
 echo "Starting Postgres"
 mkdir -p /tmp/run/postgresql/
@@ -35,7 +35,7 @@ echo "Setting up database"
 for f in postgres/*.sql;
 do
     echo "++ $f"
-    psql -f "$f"
+    psql -f "$f" 2> /dev/null > /dev/null
 done
 
 echo "Starting Metabase"
@@ -55,9 +55,11 @@ py ./python/setupMetabase.py
 echo "Starting NGINX"
 mkdir /tmp/nginx_tmp
 mkdir -p /tmp/nginx_run/nginx
-nginx -g 'daemon off;'
+nginx -g 'daemon off;' 2> /dev/null > /dev/null &
 echo "Finished"
 
+sleep 2
+echo "Ready at http://localhost:3000"
 sleep infinity
 kill %1
 kill %2

@@ -11,3 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the image
         run: docker build -t docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:latest ./
+      - name: Login to GitHub Packages
+        run: cat ~/GH_TOKEN.txt | docker login docker.pkg.github.com -u jrtapsell --password-stdin
+      - name: Push the image
+        run: docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:latest

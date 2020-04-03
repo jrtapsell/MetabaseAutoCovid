@@ -9,7 +9,7 @@ WORKDIR /app
 RUN wget -O ./metabase.jar https://downloads.metabase.com/latest/metabase.jar
 
 USER root
-RUN apk add openjdk8-jre python3 bash postgresql nginx
+RUN apk add openjdk8-jre python3 bash postgresql nginx jq curl
 USER appuser
 
 ADD ./python/requirements.txt ./python/requirements.txt

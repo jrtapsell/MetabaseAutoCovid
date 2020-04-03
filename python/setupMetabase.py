@@ -76,10 +76,11 @@ def run_setup():
 
             location / {
                 proxy_pass http://localhost:3001;
-                add_header Set-Cookie metabase.SESSION=%s;
+                proxy_set_header Cookie metabase.SESSION=%s;
+                proxy_set_header X-Metabase-Session %s;
             }
         }
-        """ % session_key)
+        """ % (session_key, session_key))
     
 
 def main():
