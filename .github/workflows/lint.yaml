@@ -1,0 +1,19 @@
+name: Linters
+# This workflow is triggered on pushes to the repository.
+on: [push]
+
+jobs:
+  hadolint:
+    name: Hadolint
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Hadolint"
+        uses: brpaz/hadolint-action@master
+  python_lint:
+    name: Python Linter
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Python linting
+        uses: konstruktoid/action-pylint@master
