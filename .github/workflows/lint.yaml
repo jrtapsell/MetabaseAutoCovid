@@ -18,4 +18,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Python linting
-        run: docker run -ti --rm -v $(pwd):/apps alpine/flake8:3.5.0 ./python/*.py
+        run: docker run --rm -v $(pwd):/apps alpine/flake8:3.5.0 ./python/*.py
