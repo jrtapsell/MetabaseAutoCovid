@@ -43,7 +43,7 @@ class TestDockerImage(unittest.TestCase):
         self.assertNotEquals(recovered, 0)
         self.assertNotEquals(death, 0)
 
-        self.assertEquals( 
+        self.assertEquals(
             tables,
             [
                 'raw_confirmed',
