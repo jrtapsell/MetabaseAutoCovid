@@ -6,7 +6,7 @@ This is a single docker image that can be spun up, that creates a Metabase insta
 # How do I run this
 Run the following command
 
-    docker run --rm --tmpfs /tmp --read-only docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
+    docker run --rm --tmpfs /tmp --read-only -p 3000:3000 docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
 
 # What does the image do
 
