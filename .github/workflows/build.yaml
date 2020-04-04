@@ -22,6 +22,7 @@ jobs:
       - name: Push the image
         run: docker push docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA
       - name: Run validate on the image
+        timeout-minutes: 5
         run: docker run --rm --tmpfs /tmp --read-only release ./python/validate.py
       - name: Tag passing images
         run: docker tag release docker.pkg.github.com/jrtapsell/metabaseautocovid/$(echo ${GITHUB_REF#refs/} | sed 's/heads/branch/' | sed 's/\//:/')
