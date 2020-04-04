@@ -28,7 +28,7 @@ jobs:
         run: docker push docker.pkg.github.com/jrtapsell/metabaseautocovid/$(echo ${GITHUB_REF#refs/} | sed 's/heads/branch/' | sed 's/\//:/')
       - name: Tag release
         if: github.ref == 'refs/heads/master'
-        run: docker tag release docker.pkg.github.com/jrtapsell/metabaseautocovid:latest
+        run: docker tag release docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
       - name: Release release
         if: github.ref == 'refs/heads/master'
-        run: docker push docker.pkg.github.com/jrtapsell/metabaseautocovid:latest
+        run: docker push docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
