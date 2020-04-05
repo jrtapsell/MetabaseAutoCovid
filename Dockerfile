@@ -6,7 +6,7 @@ RUN chown appuser:appgroup /app
 
 USER appuser
 WORKDIR /app
-RUN wget -O ./metabase.jar https://downloads.metabase.com/v0.34.3/metabase.jar
+RUN wget -O ./metabase.jar https://downloads.metabase.com/v0.35.1/metabase.jar
 
 USER root
 RUN apk add \
@@ -22,6 +22,8 @@ RUN apk add \
     python3-dev=3.8.2-r0 \
     musl-dev=1.1.24-r2 \
     openssl=1.1.1d-r3 \
+    fontconfig=2.13.1-r2 \
+    ttf-dejavu=2.37-r1 \
     --no-cache && rm -rf /var/cache/apk/*
 USER appuser
 
