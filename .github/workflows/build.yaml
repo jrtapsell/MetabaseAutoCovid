@@ -25,9 +25,9 @@ jobs:
         timeout-minutes: 5
         run: docker run --rm --tmpfs /tmp --read-only release ./python/validate.py
       - name: Tag passing images
-        run: docker tag release docker.pkg.github.com/jrtapsell/metabaseautocovid/$(echo ${GITHUB_REF#refs/} | sed 's/heads/branch/' | sed 's/\//:/')
+        run: docker tag release docker.pkg.github.com/jrtapsell/metabaseautocovid/$(echo ${GITHUB_REF#refs/} | sed 's/heads/branch/' | sed 's/\//:/' | sed 's/\//:/' | sed 's/\//__/g')
       - name: Push branch releases
-        run: docker push docker.pkg.github.com/jrtapsell/metabaseautocovid/$(echo ${GITHUB_REF#refs/} | sed 's/heads/branch/' | sed 's/\//:/')
+        run: docker push docker.pkg.github.com/jrtapsell/metabaseautocovid/$(echo ${GITHUB_REF#refs/} | sed 's/heads/branch/' | sed 's/\//:/' | sed 's/\//:/' | sed 's/\//__/g')
       - name: Tag release number
         if: github.ref == 'refs/heads/master'
         run: docker tag release docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:$BUILD_ID
