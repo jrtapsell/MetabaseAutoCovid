@@ -30,7 +30,7 @@ def wait_for_metabase():
     while (True):
         try:
             d = parse(requests.get(SETUP_KEY_URL, timeout=1))
-            if d["setup_token"]:
+            if d["setup-token"]:
                 break
         except Exception:
             p(">>> Trying again in 10 seconds")
@@ -39,7 +39,7 @@ def wait_for_metabase():
 
 def run_setup():
     p(">>> Getting the setup token")
-    setup_token = parse(requests.get(SETUP_KEY_URL))["setup_token"]
+    setup_token = parse(requests.get(SETUP_KEY_URL))["setup-token"]
     p(">>> Configuring")
     session_key = parse(requests.post(SETUP_URL, json={
         "prefs": {
