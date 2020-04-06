@@ -7,21 +7,23 @@
 This is a single docker image that can be spun up, that creates a Metabase instance with data loaded from the WHO dataset
 
 ## How do I run this
-- Run the following command
+  - Run the following command
 
-      docker run --rm --tmpfs /tmp --read-only -p 3000:3000 docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
+        docker run --rm --tmpfs /tmp --read-only -p 3000:3000 docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
 
-  Once this is done, the system will start up and download the data.
-- Once you see a line like this:
+    Once this is done, the system will start up and download the data.
+
+  - Once you see a line like this:
     
-      Ready at http://localhost:3000
+          Ready at http://localhost:3000
 
-  Then you can see the Metabase instance at http://localhost:3000
+    Then you can see the Metabase instance at <http://localhost:3000>
+
 ## What does the image do
 
 This image contains:
-  - An instance of Postgres
-  - An instance of Metabase configured to use the above for app storage
-  - An instance of Nginx that proxies Metabase and bypasses auth
+- An instance of Postgres
+- An instance of Metabase configured to use the above for app storage
+- An instance of Nginx that proxies Metabase and bypasses auth
 
 It downloads the data that WHO provide, aggregated by [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19), transforms it and then loads it into the Metabase instance.
