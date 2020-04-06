@@ -7,17 +7,17 @@
 This is a single docker image that can be spun up, that creates a Metabase instance with data loaded from the WHO dataset
 
 ## How do I run this
-- Run the following command
+  - Run the following command
 
-      docker run --rm --tmpfs /tmp --read-only -p 3000:3000 docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
+        docker run --rm --tmpfs /tmp --read-only -p 3000:3000 docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
 
-  Once this is done, the system will start up and download the data.
+    Once this is done, the system will start up and download the data.
 
-- Once you see a line like this:
+  - Once you see a line like this:
     
-      Ready at http://localhost:3000
+        Ready at http://localhost:3000
 
-  Then you can see the Metabase instance at <http://localhost:3000>
+    Then you can see the Metabase instance at <http://localhost:3000>
 
 ## What does the image do
 This image contains:
