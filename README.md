@@ -20,10 +20,9 @@ This is a single docker image that can be spun up, that creates a Metabase insta
   Then you can see the Metabase instance at <http://localhost:3000>
 
 ## What does the image do
-
 This image contains:
-  - An instance of Postgres
-  - An instance of Metabase configured to use the above for app storage
-  - An instance of Nginx that proxies Metabase and bypasses auth
+- An instance of Postgres
+- An instance of Metabase configured to use the above for app storage
+- An instance of Nginx that proxies Metabase and bypasses auth
 
 It downloads the data provided by the WHO, aggregated by [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19), transforms it and then loads it into the Postgres instance, ready to be analysed in Metabase.
