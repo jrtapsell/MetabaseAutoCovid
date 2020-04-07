@@ -1,5 +1,15 @@
 {
+  "name": "validation",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
   "author": "",
+  "main": "lint_markdown.js",
+  "scripts": {
+    "eslint": "eslint *.js",
+    "fix_standard": "standard --fix ./*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "lodash": "^4.17.15",
     "remark": "^12.0.0",
@@ -9,16 +19,6 @@
     "standard": "^14.3.3",
     "vfile-reporter": "^6.0.1"
   },
-  "description": "",
-  "license": "ISC",
-  "main": "lint_markdown.js",
-  "name": "validation",
-  "scripts": {
-    "fix_standard": "standard --fix ./*.js",
-    "eslint": "eslint *.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "version": "1.0.0",
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
