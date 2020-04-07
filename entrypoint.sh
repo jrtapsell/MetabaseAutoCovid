@@ -26,7 +26,7 @@ export MB_JETTY_PORT="3001"
 
 function py {
     fileName=$1
-    echo "Running $fileName - $(sha1sum $fileName)"
+    echo "Running $fileName - $(sha1sum "$fileName")"
     python3 "$fileName"
 }
 
