@@ -1,14 +1,5 @@
 {
-  "name": "validation",
-  "version": "1.0.0",
-  "description": "",
-  "main": "lint_markdown.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "fix_standard": "standard --fix ./*.js"
-  },
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.15",
     "remark": "^12.0.0",
@@ -17,5 +8,14 @@
     "remark-preset-lint-recommended": "^4.0.0",
     "standard": "^14.3.3",
     "vfile-reporter": "^6.0.1"
-  }
+  },
+  "description": "",
+  "license": "ISC",
+  "main": "lint_markdown.js",
+  "name": "validation",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fix_standard": "standard --fix ./*.js"
+  },
+  "version": "1.0.0"
 }
