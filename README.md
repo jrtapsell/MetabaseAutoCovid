@@ -37,6 +37,7 @@ It downloads the data provided by the WHO, aggregated by [Johns Hopkins CSSE](ht
 
 | Element | AGLP | Custom | Link |
 |---------|------|--------|------|
+| Scripting | x  |        |
 | Data    |      |   x    |https://github.com/CSSEGISandData/COVID-19#:~:text=Terms
 | Metabase| x    |        |https://www.metabase.com/license/
 | Nginx   |      |   x    |https://nginx.org/LICENSE
