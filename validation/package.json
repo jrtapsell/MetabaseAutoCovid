@@ -1,0 +1,17 @@
+{
+  "name": "validation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lint_markdown.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "remark": "^12.0.0",
+    "remark-lint-emphasis-marker": "^2.0.0",
+    "remark-lint-strong-marker": "^2.0.0",
+    "vfile-reporter": "^6.0.1"
+  }
+}
