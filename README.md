@@ -32,3 +32,5 @@ This image contains:
 -   An instance of Nginx that proxies Metabase and bypasses auth
 
 It downloads the data provided by the WHO, aggregated by [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19), transforms it and then loads it into the Postgres instance, ready to be analysed in Metabase
+# a
+# b
