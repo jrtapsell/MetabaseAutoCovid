@@ -1,23 +1,25 @@
 const report = require('vfile-reporter')
 const remark = require('remark')
-const emphasisMarker = require('remark-lint-emphasis-marker')
-const strongMarker = require('remark-lint-strong-marker')
 const fs = require('fs').promises
+const { getAll } = require('./common')
+const { promisify } = require('util')
 
 async function main () {
+  const files = await getAll('.md')
+
+  console.log(files)
   const text = (await fs.readFile('../README.md')).toString()
-  remark()
-    .use(emphasisMarker, '*')
-    .use(strongMarker, '*')
+  const rem = promisify(remark()
+    .use(require('remark-preset-lint-recommended'))
     // ^ two `remark-lint` rules.
     .use({
       settings: { emphasis: '*', strong: '*' }
     // ^ `remark-stringify` settings.
     })
-    .process(text, function (err, file) {
-      console.error(report(err || file))
-      console.log(String(file))
-    })
+    .process)
+  const t = await rem(text)
+  console.log(report(t))
+  console.log(String(t))
 }
 
 main()
