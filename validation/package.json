@@ -14,8 +14,8 @@
   "main": "lint_markdown.js",
   "name": "validation",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "fix_standard": "standard --fix ./*.js"
+    "fix_standard": "standard --fix ./*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "version": "1.0.0"
 }
