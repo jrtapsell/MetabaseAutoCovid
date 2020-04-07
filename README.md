@@ -33,12 +33,12 @@ This image contains:
 
 It downloads the data provided by the WHO, aggregated by [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19), transforms it and then loads it into the Postgres instance, ready to be analysed in Metabase
 
-# Licencing
+## Licencing
 
-| Element | AGLP | Custom | Link |
-|---------|------|--------|------|
-| Scripting | x  |        |
-| Data    |      |   x    |https://github.com/CSSEGISandData/COVID-19#:~:text=Terms
-| Metabase| x    |        |https://www.metabase.com/license/
-| Nginx   |      |   x    |https://nginx.org/LICENSE
-| PostgreSQL|    |   x    |https://www.postgresql.org/about/licence/
+| Element    | AGLP | Custom | Link                                                       |
+|------------|------|--------|------------------------------------------------------------|
+| Scripting  | x    |        | <https://www.gnu.org/licenses/agpl-3.0.txt>                |
+| Data       |      |   x    | <https://github.com/CSSEGISandData/COVID-19#:~:text=Terms> |
+| Metabase   | x    |        | <https://www.metabase.com/license/>                        |
+| Nginx      |      |   x    | <https://nginx.org/LICENSE>                                |
+| PostgreSQL |      |   x    | <https://www.postgresql.org/about/licence/>                |
