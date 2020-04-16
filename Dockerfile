@@ -45,6 +45,7 @@ COPY ./postgres/* ./postgres/
 COPY ./entrypoint.sh ./
 
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+ADD ./countries_ammendments.csv ./
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["sleep infinity"]

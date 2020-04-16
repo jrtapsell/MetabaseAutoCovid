@@ -2,6 +2,7 @@
 import requests
 import time
 import os
+import json
 
 METABASE_BASE = 'http://localhost:3001/api'
 SETUP_KEY_URL = '%s/session/properties' % METABASE_BASE
@@ -78,6 +79,10 @@ def run_setup():
         server {
             listen 3000 default_server;
 
+            location ^~ /nginx_mirror/ {
+                root /tmp/nginx_mirror;
+                autoindex on;
+            }
             location / {
                 proxy_pass http://localhost:3001;
                 proxy_set_header Cookie metabase.SESSION=%s;
