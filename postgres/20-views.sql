@@ -1,10 +1,11 @@
 \c :covid_db;
 
-CREATE MATERIALIZED VIEW i100_countries as (
+CREATE TABLE i100_countries as (
     select min(date) as date, country from raw_confirmed where value >= 100 group by country 
 );
+COMMENT ON TABLE i100_countries is 'The dates when each country reaches 100 reported infections';
 
-CREATE MATERIALIZED VIEW countries_confirmed as (
+CREATE TABLE countries_confirmed as (
     with data as (
         select 
             _now.country, _now.date, sum(_now.value) as today, sum(_before.value) as yesterday
@@ -20,7 +21,7 @@ CREATE MATERIALIZED VIEW countries_confirmed as (
     select data.*, data.date - i100_countries.date as i100_date from data left join i100_countries on data.country = i100_countries.country
 );
 
-CREATE MATERIALIZED VIEW countries_death as (
+CREATE TABLE countries_death as (
     with data as (
         select 
             _now.country, _now.date, sum(_now.value) as today, sum(_before.value) as yesterday
@@ -36,7 +37,7 @@ CREATE MATERIALIZED VIEW countries_death as (
     select data.*, data.date - i100_countries.date as i100_date from data left join i100_countries on data.country = i100_countries.country
 );
 
-CREATE MATERIALIZED VIEW countries_recovered as (
+CREATE TABLE countries_recovered as (
     with data as (
         select 
             _now.country, _now.date, sum(_now.value) as today, sum(_before.value) as yesterday
@@ -52,7 +53,7 @@ CREATE MATERIALIZED VIEW countries_recovered as (
     select data.*, data.date - i100_countries.date as i100_date from data left join i100_countries on data.country = i100_countries.country
 );
 
-CREATE MATERIALIZED VIEW countries_combined as (
+CREATE TABLE countries_combined as (
     select 
     countries_confirmed.country, 
     countries_confirmed.date,
@@ -66,6 +67,20 @@ CREATE MATERIALIZED VIEW countries_combined as (
     left join countries_recovered on (countries_recovered.country = countries_confirmed.country) and (countries_recovered.date = countries_confirmed.date)
 );
 
-CREATE MATERIALIZED VIEW latest_date as (select max(date) as date from raw_confirmed);
+CREATE TABLE latest_date as (select max(date) as date from raw_confirmed);
 
-CREATE MATERIALIZED VIEW countries_combined_now as (select countries_combined.* from countries_combined inner join latest_date on latest_date.date = countries_combined.date);
+CREATE TABLE countries_combined_now as (select countries_combined.* from countries_combined inner join latest_date on latest_date.date = countries_combined.date);
+
+CREATE TABLE merged_countries as (select * from raw_countries union select * from ammend_countries);
+
+CREATE TABLE all_latest as ( SELECT
+    Province_State as region, 
+    Country_Region as country, 
+    Last_Update as updated, 
+    Lat as lat, 
+    Long_ as long, 
+    Confirmed as confirmed, 
+    Deaths as deaths, 
+    Recovered as recovered, 
+    Active as active
+FROM raw_latest);

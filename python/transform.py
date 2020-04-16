@@ -35,12 +35,13 @@ def expand(row):
 
 
 for item in files:
-    with open(item["downloadName"], 'r') as inFile:
-        reader = csv.DictReader(inFile)
-        lines = itertools.chain(*[expand(line) for line in reader])
-    with open(item["transformedName"], 'w') as outFile:
-        writer = csv.DictWriter(
-            outFile,
-            ["region", "country", "lat", "lon", "date", "value"])
-        writer.writeheader()
-        writer.writerows(lines)
+    if item["transform"]:
+        with open(item["downloadName"], 'r') as inFile:
+            reader = csv.DictReader(inFile)
+            lines = itertools.chain(*[expand(line) for line in reader])
+        with open(item["transformedName"], 'w') as outFile:
+            writer = csv.DictWriter(
+                outFile,
+                ["region", "country", "lat", "lon", "date", "value"])
+            writer.writeheader()
+            writer.writerows(lines)

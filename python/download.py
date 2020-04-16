@@ -2,11 +2,9 @@
 import requests
 from common import files
 repoPath = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19"
-directory = "csse_covid_19_data/csse_covid_19_time_series/"
-downloadBase = "%s/master/%s" % (repoPath, directory)
 
 for item in files:
-    url = downloadBase + item["sourceName"]
+    url = "%s/%s/%s/%s" % (repoPath, item["sourceBranch"], item["sourceDir"], item["sourceName"])
     print("Getting ", url)
     r = requests.get(url)
 

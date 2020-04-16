@@ -1,7 +1,19 @@
 #!/bin/bash
-set -e
+set -eE
 set -u
-#set -x
+
+function on_error() {
+    echo "FAILURE"
+    echo "-------- STDOUT"
+    cat /tmp/silenced_out
+    echo "-------- STDERR"
+    cat /tmp/silenced_err
+    echo "--------"
+}
+
+trap 'on_error' ERR
+touch /tmp/silenced_out
+touch /tmp/silenced_err
 
 mkdir -p /tmp/secrets/
 
@@ -29,10 +41,19 @@ function py {
     echo "Running $fileName - $(sha1sum "$fileName")"
     python3 "$fileName"
 }
+echo "Downloading map data"
+mkdir -p /tmp/data
+mkdir -p /tmp/nginx_mirror/nginx_mirror
+wget https://datahub.io/core/country-list/r/data.csv -O /tmp/data/countries.csv 2> /tmp/silenced_err > /tmp/silenced_out
+wget https://opendata.arcgis.com/datasets/687f346f5023410ba86615655ff33ca9_4.geojson -O /tmp/nginx_mirror/nginx_mirror/utlas.geojson 2> /tmp/silenced_err > /tmp/silenced_out
 
 echo "Downloading the data"
-mkdir -p /tmp/data
 py ./python/download.py
+
+echo "Downloading NHS Data"
+mkdir /tmp/nhs/
+wget "https://fingertips.phe.org.uk/documents/Historic%20COVID-19%20Dashboard%20Data.xlsx" -O /tmp/nhs/raw.xlsx  2> /tmp/silenced_err > /tmp/silenced_out
+py ./python/download_uk.py
 
 echo "Converting the data"
 mkdir -p /tmp/transformed
@@ -40,22 +61,22 @@ py ./python/transform.py
 
 echo "Setting up Postgres"
 mkdir -p /tmp/postgresql
-initdb -A md5 --username=postgres --pwfile=/tmp/secrets/pgpassword 2> /dev/null > /dev/null
+initdb -A md5 --username=postgres --pwfile=/tmp/secrets/pgpassword 2> /tmp/silenced_err > /tmp/silenced_out
 
 echo "Starting Postgres"
 mkdir -p /tmp/run/postgresql/
-postgres 2> /dev/null > /dev/null &
+postgres 2> /tmp/pg_err > /tmp/pg_out &
 sleep 2
 
 echo "Setting up database"
 for f in postgres/*.sql;
 do
     echo "++ $f"
-    psql -f "$f" --set=covid_db=$COVID_DB --set=meta_db=$MB_DB_DBNAME 2> /dev/null > /dev/null
+    psql -v ON_ERROR_STOP=ON -f "$f" --set=covid_db=$COVID_DB --set=meta_db=$MB_DB_DBNAME 2> /tmp/silenced_err > /tmp/silenced_out
 done
 
 echo "Starting Metabase"
-java -Xmx1g -Xms1g -jar ./metabase.jar 2> /dev/null > /dev/null &
+java -Xmx1g -Xms1g -jar ./metabase.jar 2> /tmp/mb_err > /tmp/mb_out &
 
 echo "Configuring Metabase"
 mkdir -p /tmp/nginx
@@ -64,7 +85,7 @@ py ./python/setupMetabase.py
 echo "Starting NGINX"
 mkdir -p /tmp/nginx_tmp
 mkdir -p /tmp/nginx_run/nginx
-nginx -g 'daemon off;' 2> /dev/null > /dev/null &
+nginx -g 'daemon off;' 2> /tmp/nginx_err > /tmp/nginx_out &
 echo "Finished"
 
 sleep 2
