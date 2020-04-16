@@ -2,7 +2,6 @@
 import requests
 import time
 import os
-import json
 
 METABASE_BASE = 'http://localhost:3001/api'
 SETUP_KEY_URL = '%s/session/properties' % METABASE_BASE
