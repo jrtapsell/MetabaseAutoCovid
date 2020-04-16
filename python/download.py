@@ -4,7 +4,12 @@ from common import files
 repoPath = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19"
 
 for item in files:
-    url = "%s/%s/%s/%s" % (repoPath, item["sourceBranch"], item["sourceDir"], item["sourceName"])
+    url = "%s/%s/%s/%s" % (
+        repoPath,
+        item["sourceBranch"],
+        item["sourceDir"],
+        item["sourceName"])
+
     print("Getting ", url)
     r = requests.get(url)
 

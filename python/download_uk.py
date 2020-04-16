@@ -9,13 +9,16 @@ import re
 UK_DATE = re.compile("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")
 STANDARD_DATE = re.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
 
-wb = load_workbook(filename = r"/tmp/nhs/raw.xlsx", data_only=True)
+wb = load_workbook(filename=r"/tmp/nhs/raw.xlsx", data_only=True)
+
 
 def all_not_none(row):
     return not all(it is None for it in row)
 
+
 def skip_including_null(items):
     return itertools.islice(itertools.dropwhile(all_not_none, items), 1, None)
+
 
 def cleanup(data):
     if isinstance(data, datetime.datetime):
@@ -41,6 +44,7 @@ def rotate_dates(data, header_info):
             if value:
                 ret += [fixed_part + [date_name, value]]
     return [header_names]+ret
+
 
 for sheet in wb.worksheets:
     if sheet.title == "Summary":
@@ -85,14 +89,18 @@ for sheet in wb.worksheets:
             for region in regions:
                 index = region[0]
                 value = row[index]
-                
+
                 if value:
                     ret += [[row[0], region[1], value]]
         rows = ret
-    
+
     rows[0] = [x.replace(" ", "_") for x in rows[0] if x is not None]
     rows = [row[:len(rows[0])] for row in rows]
     with open('/tmp/nhs/%s.csv' % title, 'w', newline='') as csvfile:
-        spamwriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        spamwriter = csv.writer(
+            csvfile,
+            delimiter=',',
+            quotechar='"',
+            quoting=csv.QUOTE_MINIMAL)
         for row in rows:
             spamwriter.writerow(row)
