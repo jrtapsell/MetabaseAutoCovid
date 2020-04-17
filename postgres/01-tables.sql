@@ -57,40 +57,22 @@ CREATE TABLE ammend_countries (
     Code TEXT
 );
 
-CREATE TABLE raw_nhs_contries(
-    Area_Code TEXT,
-    Area_Name TEXT,
-    Date DATE,
-    Value INT
+CREATE TABLE raw_nhs_history(
+    date DATE,
+    sector_type TEXT,
+    sector_key TEXT,
+    sector_name TEXT,
+    new_confirmed INT,
+    total_confirmed INT,
+    new_deaths INT,
+    total_deaths INT
 );
 
-CREATE TABLE raw_nhs_regions(
-    Area_Code TEXT,
-    Area_Name TEXT,
-    Date DATE,
-    Value INT
-);
-
-CREATE TABLE raw_nhs_recovered(
-    Date DATE,
-    Cumulative_Counts INT
-);
-
-CREATE TABLE raw_nhs_cases (
-    Date DATE,
-    Cases INT,
-    Cumulative_Cases INT
-);
-
-CREATE TABLE raw_nhs_deaths (
-    Date DATE,
-    Region TEXT,
-    Deaths INT
-);
-
-CREATE TABLE raw_nhs_utla(
-    Area_Code TEXT,
-    Area_Name TEXT,
-    Date DATE,
-    Value INT
+CREATE TABLE raw_nhs_latest(
+    sector_type TEXT,
+    sector_key TEXT,
+    sector_name TEXT,
+    cases INT,
+    deaths INT,
+    new_cases INT
 );

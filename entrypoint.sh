@@ -45,15 +45,13 @@ echo "Downloading map data"
 mkdir -p /tmp/data
 mkdir -p /tmp/nginx_mirror/nginx_mirror
 wget https://datahub.io/core/country-list/r/data.csv -O /tmp/data/countries.csv 2> /tmp/silenced_err > /tmp/silenced_out
-wget https://opendata.arcgis.com/datasets/687f346f5023410ba86615655ff33ca9_4.geojson -O /tmp/nginx_mirror/nginx_mirror/utlas.geojson 2> /tmp/silenced_err > /tmp/silenced_out
 
 echo "Downloading the data"
 py ./python/download.py
 
 echo "Downloading NHS Data"
 mkdir /tmp/nhs/
-wget "https://fingertips.phe.org.uk/documents/Historic%20COVID-19%20Dashboard%20Data.xlsx" -O /tmp/nhs/raw.xlsx  2> /tmp/silenced_err > /tmp/silenced_out
-py ./python/download_uk.py
+py ./python/download_nhs.py
 
 echo "Converting the data"
 mkdir -p /tmp/transformed
