@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 function Invoke-MB() {
     docker-compose rm -fsv
     docker-compose up -d --build
