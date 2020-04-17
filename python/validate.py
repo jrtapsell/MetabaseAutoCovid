@@ -57,12 +57,18 @@ class TestDockerImage(unittest.TestCase):
             union select raw_latest.Country_Region as country from raw_latest)
 
             select count(*) from mentioned
-            left join merged_countries on mentioned.country = merged_countries.name
+            left join merged_countries 
+                on mentioned.country = merged_countries.name
             where merged_countries.code is null"""
         )
-        self.assertEqual(0, cur.fetchone()[0], "Found a country not in the countries list")
+        self.assertEqual(
+            0, 
+            cur.fetchone()[0], 
+            "Found a country not in the countries list")
 
-        json = requests.get("http://localhost:3000/api/util/stats").json()
+        json = requests.get("http://localhost:3000/api/util/stats") \
+            .json()
+
         self.assertEqual(
             json["stats"]["database"]["databases"]["total"],
             1

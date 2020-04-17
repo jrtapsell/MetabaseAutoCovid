@@ -74,10 +74,15 @@ for sheet in wb.worksheets:
     }[title]
 
     rows = rows[startRow:endRow]
-    isDateHeader = [STANDARD_DATE.fullmatch(str(it)) is not None for it in rows[0]]
+
+    def is_date(value):
+        return STANDARD_DATE.fullmatch(str(value)) is not None
+
+    isDateHeader = [is_date(i) for i in rows[0]]
 
     if any(isDateHeader):
-        headerInfo = [(id, x[0], x[1]) for id, x in enumerate(zip(isDateHeader, rows[0]))]
+        described_rows = enumerate(zip(isDateHeader, rows[0]))
+        headerInfo = [(id, x[0], x[1]) for id, x in described_rows]
         rows = rotate_dates(rows, headerInfo)
 
     if title == "UK Deaths":
