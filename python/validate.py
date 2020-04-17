@@ -20,12 +20,8 @@ EXPECTED_TABLES = [
     'raw_confirmed',
     'raw_death',
     'raw_latest',
-    'raw_nhs_cases',
-    'raw_nhs_contries',
-    'raw_nhs_deaths',
-    'raw_nhs_recovered',
-    'raw_nhs_regions',
-    'raw_nhs_utla',
+    'raw_nhs_history',
+    'raw_nhs_latest',
     'raw_recovered']
 
 
@@ -76,25 +72,6 @@ class TestDockerImage(unittest.TestCase):
             json["stats"]["database"]["databases"]["total"],
             1
         )
-
-        utla_json = requests.get(UTLA_MIRROR).json()
-        map_utla_names = {
-            x["properties"]["ctyua16cd"]: x["properties"]["ctyua16nm"]
-            for x in utla_json["features"]}
-
-        cur.execute("select distinct area_code, area_name from raw_nhs_utla")
-        pg_utla_names = {x[0]: x[1] for x in cur.fetchall()}
-
-        pg_key_set = set(pg_utla_names.keys())
-        map_key_set = set(map_utla_names.keys())
-
-        print("In PG Only")
-        for pg_only_name in pg_key_set - map_key_set:
-            print(pg_only_name, pg_utla_names[pg_only_name])
-
-        print("In Map Only")
-        for map_only_name in map_key_set - pg_key_set:
-            print(map_only_name, map_utla_names[map_only_name])
 
         cur.close()
         conn.close()

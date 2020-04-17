@@ -8,4 +8,4 @@ COPY raw_countries(Name, Code) FROM '/tmp/data/countries.csv' DELIMITER ',' CSV 
 COPY ammend_countries(Name, Code) FROM '/app/countries_ammendments.csv' DELIMITER ',' CSV HEADER;
 
 COPY raw_nhs_history(date,sector_type,sector_key,sector_name,new_confirmed,total_confirmed,new_deaths,total_deaths) FROM '/tmp/nhs/history.csv' DELIMITER ',' CSV HEADER;
-COPY raw_nhs_history(sector_type,sector_key,sector_name,cases,deaths,new_cases) FROM '/tmp/nhs/latest.csv' DELIMITER ',' CSV HEADER;
+COPY raw_nhs_latest(sector_type,sector_key,sector_name,cases,deaths,new_cases) FROM '/tmp/nhs/latest.csv' DELIMITER ',' CSV HEADER;

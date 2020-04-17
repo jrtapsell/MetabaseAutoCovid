@@ -41,6 +41,7 @@ USER appuser
 
 COPY ./python/* ./python/
 COPY ./postgres/* ./postgres/
+COPY ./postgres_post/* ./postgres_post/
 
 COPY ./entrypoint.sh ./
 

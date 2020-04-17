@@ -84,6 +84,14 @@ echo "Starting NGINX"
 mkdir -p /tmp/nginx_tmp
 mkdir -p /tmp/nginx_run/nginx
 nginx -g 'daemon off;' 2> /tmp/nginx_err > /tmp/nginx_out &
+
+echo "Injecting direct database settings"
+for f in postgres_post/*.sql;
+do
+    echo "++ $f"
+    psql -v ON_ERROR_STOP=ON -f "$f" --set=covid_db=$COVID_DB --set=meta_db=$MB_DB_DBNAME 2> /tmp/silenced_err > /tmp/silenced_out
+done
+
 echo "Finished"
 
 sleep 2
