@@ -134,7 +134,7 @@ with open('/tmp/nhs/latest.csv', 'w', newline='') as csvfile:
     for row in latest_rows:
         spamwriter.writerow([row[x] for x in latest_header])
 
-for map in maps:
-    with open("/tmp/nginx_mirror/nginx_mirror/%s" % map["name"], "w") as out:
-        r = requests.get(map["url"]).text
+for i in maps:
+    with open("/tmp/nginx_mirror/nginx_mirror/%s" % i["name"], "w") as out:
+        r = requests.get(i["url"]).text
         out.write(r)
