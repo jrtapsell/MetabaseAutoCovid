@@ -7,9 +7,5 @@ COPY raw_latest(Province_State, Country_Region, Last_Update, Lat, Long_, Confirm
 COPY raw_countries(Name, Code) FROM '/tmp/data/countries.csv' DELIMITER ',' CSV HEADER;
 COPY ammend_countries(Name, Code) FROM '/app/countries_ammendments.csv' DELIMITER ',' CSV HEADER;
 
-COPY raw_nhs_contries(Area_Code,Area_Name,Date,Value) FROM '/tmp/nhs/Countries.csv' DELIMITER ',' CSV HEADER;
-COPY raw_nhs_regions(Area_Code,Area_Name,Date,Value) FROM '/tmp/nhs/NHS Regions.csv' DELIMITER ',' CSV HEADER;
-COPY raw_nhs_recovered(Date,Cumulative_Counts) FROM '/tmp/nhs/Recovered patients.csv' DELIMITER ',' CSV HEADER;
-COPY raw_nhs_cases (Date,Cases,Cumulative_Cases) FROM '/tmp/nhs/UK Cases.csv' DELIMITER ',' CSV HEADER;
-COPY raw_nhs_deaths (Date,Region,Deaths) FROM '/tmp/nhs/UK Deaths.csv' DELIMITER ',' CSV HEADER;
-COPY raw_nhs_utla(Area_Code,Area_Name,Date,Value) FROM '/tmp/nhs/UTLAs.csv' DELIMITER ',' CSV HEADER;
+COPY raw_nhs_history(date,sector_type,sector_key,sector_name,new_confirmed,total_confirmed,new_deaths,total_deaths) FROM '/tmp/nhs/history.csv' DELIMITER ',' CSV HEADER;
+COPY raw_nhs_history(sector_type,sector_key,sector_name,cases,deaths,new_cases) FROM '/tmp/nhs/latest.csv' DELIMITER ',' CSV HEADER;
