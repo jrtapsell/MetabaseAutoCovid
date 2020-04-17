@@ -45,7 +45,7 @@ class TestDockerImage(unittest.TestCase):
 
         for table_name in EXPECTED_TABLES:
             # Uses a hardcoded set of table names
-            #nosec
+            # nosec
             cur.execute("SELECT count(*) from %s;" % table_name)
             rows = cur.fetchone()[0]
             self.assertNotEqual(rows, 0, "Table %s was empty" % table_name)
