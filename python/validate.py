@@ -4,6 +4,9 @@ import psycopg2
 import os
 import requests
 
+STATS_ENDPOINT = "http://localhost:3000/api/util/stats"
+UTLA_MIRROR = "http://localhost:3000/nginx_mirror/utlas.geojson"
+
 EXPECTED_TABLES = [
     'all_latest',
     'countries_combined',
@@ -57,16 +60,16 @@ class TestDockerImage(unittest.TestCase):
             union select raw_latest.Country_Region as country from raw_latest)
 
             select count(*) from mentioned
-            left join merged_countries 
+            left join merged_countries
                 on mentioned.country = merged_countries.name
             where merged_countries.code is null"""
         )
         self.assertEqual(
-            0, 
-            cur.fetchone()[0], 
+            0,
+            cur.fetchone()[0],
             "Found a country not in the countries list")
 
-        json = requests.get("http://localhost:3000/api/util/stats") \
+        json = requests.get(STATS_ENDPOINT) \
             .json()
 
         self.assertEqual(
@@ -74,7 +77,7 @@ class TestDockerImage(unittest.TestCase):
             1
         )
 
-        utla_json = requests.get("http://localhost:3000/nginx_mirror/utlas.geojson").json()
+        utla_json = requests.get(UTLA_MIRROR).json()
         map_utla_names = {
             x["properties"]["ctyua16cd"]: x["properties"]["ctyua16nm"]
             for x in utla_json["features"]}
