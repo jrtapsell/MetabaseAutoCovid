@@ -8,11 +8,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     name: "Release"
     steps:
       - name: Login to GitHub Packages
-        run: docker login docker.pkg.github.com -u jrtapsell -p "$GITHUB_TOKEN"
+        run: docker login docker.pkg.github.com -u jrtapsell -p "${{ secrets.GITHUB_TOKEN }}"
       - run: "docker pull docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest"
       - run: "docker run --rm --tmpfs /tmp --read-only docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest ./python/validate.py"

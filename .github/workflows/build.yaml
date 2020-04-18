@@ -1,14 +1,14 @@
 name: Push Build
 on: [push]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_SHA: ${{ github.sha }}
+  BUILD_ID: ${{ github.run_id }}
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_SHA: ${{ github.sha }}
-      BUILD_ID: ${{ github.run_id }}
     steps:
       - uses: actions/checkout@v2
       - name: Build the image
@@ -27,17 +27,13 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
-    env:
-      GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      GITHUB_SHA: "${{ github.sha }}"
-      BUILD_ID: "${{ github.run_id }}"
     steps:
       - name: Login to GitHub Packages
-        run: docker login docker.pkg.github.com -u jrtapsell -p "$GITHUB_TOKEN"
+        run: docker login docker.pkg.github.com -u jrtapsell -p "${{ secrets.GITHUB_TOKEN }}"
       - name: Pull the image
-        run: docker pull docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA
+        run: docker pull docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:${{ github.sha }}
       - name: Tagging the Release
-        run: docker tag docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA release
+        run: docker tag docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:${{ github.sha }} release
       - name: Run validate on the image
         timeout-minutes: 5
         run: docker run --rm --tmpfs /tmp --read-only release ./python/validate.py
@@ -46,10 +42,6 @@ jobs:
     name: Release Built Images
     needs: test
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_SHA: ${{ github.sha }}
-      BUILD_ID: ${{ github.run_id }}
     steps:
       - name: Login to GitHub Packages
         run: docker login docker.pkg.github.com -u jrtapsell -p "$GITHUB_TOKEN"
