@@ -1,7 +1,7 @@
 name: "Daily validation"
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/5 * * * *'
 jobs:
   check_release:
     runs-on: ubuntu-latest
