@@ -88,7 +88,8 @@ for target in to_extract:
             .get("value", None)
         sector_total_deaths = sector_data.get("deaths", {}) \
             .get("value", None)
-        latest_rows += [{
+        latestData = [{
+            "date": lastest_update,
             "sector_type": target,
             "sector_key": sector_key,
             "sector_name": sector_name,
@@ -96,6 +97,7 @@ for target in to_extract:
             "deaths": sector_total_deaths,
             "new_cases": sector_new_cases
         }]
+        latest_rows += latestData
 
 history_header = [
     "date",
@@ -117,6 +119,7 @@ with open('/tmp/nhs/history.csv', 'w', newline='') as csvfile:
         spamwriter.writerow([row[x] for x in history_header])
 
 latest_header = [
+    "date",
     "sector_type",
     "sector_key",
     "sector_name",

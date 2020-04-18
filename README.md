@@ -31,20 +31,21 @@ This image contains:
 -   An instance of Metabase configured to use the above for app storage
 -   An instance of Nginx that proxies Metabase and bypasses auth
 
-It downloads the data provided by the WHO, aggregated by [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19), transforms it and then loads it into the Postgres instance, ready to be analysed in Metabase
+It downloads the data provided by the WHO, aggregated by [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19), along with the [GOV.UK](https://coronavirus.data.gov.uk/about) provided data, transforms it and then loads it into the Postgres instance, ready to be analysed in Metabase
 
 ## Licencing
 
-| Element    | AGLP | Custom | Link                                                       |
-|------------|------|--------|------------------------------------------------------------|
-| Scripting  | x    |        | <https://www.gnu.org/licenses/agpl-3.0.txt>                |
-| Data       |      |   x    | <https://github.com/CSSEGISandData/COVID-19#:~:text=Terms> |
-| Metabase   | x    |        | <https://www.metabase.com/license/>                        |
-| Nginx      |      |   x    | <https://nginx.org/LICENSE>                                |
-| PostgreSQL |      |   x    | <https://www.postgresql.org/about/licence/>                |
+| Element    | AGLP | Custom | Link                                                                         |
+|------------|------|--------|------------------------------------------------------------------------------|
+| Scripting  | x    |        | <https://www.gnu.org/licenses/agpl-3.0.txt>                                  |
+| Data - WHO |      |   x    | <https://github.com/CSSEGISandData/COVID-19#:~:text=Terms>                   |
+| Data - NHS |      |   x    | <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> |
+| Metabase   | x    |        | <https://www.metabase.com/license/>                                          |
+| Nginx      |      |   x    | <https://nginx.org/LICENSE>                                                  |
+| PostgreSQL |      |   x    | <https://www.postgresql.org/about/licence/>                                  |
 
 ## Downloaded Maps
 
-<http://localhost:3000/nginx_mirror/countries.geojson>
-<http://localhost:3000/nginx_mirror/regions.geojson>
-<http://localhost:3000/nginx_mirror/utlas.geojson>
+- <http://localhost:3000/nginx_mirror/countries.geojson>
+- <http://localhost:3000/nginx_mirror/regions.geojson>
+- <http://localhost:3000/nginx_mirror/utlas.geojson>
