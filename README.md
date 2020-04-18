@@ -43,11 +43,3 @@ It downloads the data provided by the WHO, aggregated by [Johns Hopkins CSSE](ht
 | Metabase   | x    |        | <https://www.metabase.com/license/>                                          |
 | Nginx      |      |   x    | <https://nginx.org/LICENSE>                                                  |
 | PostgreSQL |      |   x    | <https://www.postgresql.org/about/licence/>                                  |
-
-## Downloaded Maps
-
--  <http://localhost:3000/nginx_mirror/countries.geojson>
-
--  <http://localhost:3000/nginx_mirror/regions.geojson>
-
--  <http://localhost:3000/nginx_mirror/utlas.geojson>

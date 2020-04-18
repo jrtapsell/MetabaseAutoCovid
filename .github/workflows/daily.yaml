@@ -4,10 +4,7 @@ on:
     - cron: '0/30 * * * *'
 jobs:
   check_release:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     name: "Release"
     steps:
       - name: Login to GitHub Packages
