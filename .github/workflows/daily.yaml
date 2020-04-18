@@ -5,7 +5,7 @@ on:
 jobs:
   check_release:
     runs-on: ubuntu-latest
-    name: "Release"
+    name: "Test Image"
     steps:
       - name: Login to GitHub Packages
         run: docker login docker.pkg.github.com -u jrtapsell -p "${{ secrets.GITHUB_TOKEN }}"

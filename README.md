@@ -4,6 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5ecb24e9b5f740b6813a31c3766af6ae)](https://www.codacy.com/manual/jrtapsell/MetabaseAutoCovid?utm_source=github.com&utm_medium=referral&utm_content=jrtapsell/MetabaseAutoCovid&utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/MetabaseAutoCovid/community](https://badges.gitter.im/MetabaseAutoCovid/community.svg)](https://gitter.im/MetabaseAutoCovid/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![](https://github.com/jrtapsell/MetabaseAutoCovid/workflows/Linters/badge.svg)
 ![](https://github.com/jrtapsell/MetabaseAutoCovid/workflows/Push%20Build/badge.svg)
+![Daily validation](https://github.com/jrtapsell/MetabaseAutoCovid/workflows/Daily%20validation/badge.svg)
 
 ## What is this project
 
