@@ -34,8 +34,10 @@ jobs:
     steps:
       - name: Login to GitHub Packages
         run: docker login docker.pkg.github.com -u jrtapsell -p "$GITHUB_TOKEN"
-      - name: Push the image
+      - name: Pull the image
         run: docker pull docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA
+      - name: Tagging the Release
+        run: docker tag docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA release
       - name: Run validate on the image
         timeout-minutes: 5
         run: docker run --rm --tmpfs /tmp --read-only release ./python/validate.py
@@ -51,8 +53,10 @@ jobs:
     steps:
       - name: Login to GitHub Packages
         run: docker login docker.pkg.github.com -u jrtapsell -p "$GITHUB_TOKEN"
-      - name: Push the image
+      - name: Pull the image
         run: docker pull docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA
+      - name: Tagging the Release
+        run: docker tag docker.pkg.github.com/jrtapsell/metabaseautocovid/automatic:$GITHUB_SHA release
       - name: Tag passing images
         run: docker tag release docker.pkg.github.com/jrtapsell/metabaseautocovid/$(echo ${GITHUB_REF#refs/} | sed 's/heads/branch/' | sed 's/\//:/' | sed 's/\//_/g')
       - name: Push branch releases
