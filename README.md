@@ -47,5 +47,7 @@ It downloads the data provided by the WHO, aggregated by [Johns Hopkins CSSE](ht
 ## Downloaded Maps
 
 -  <http://localhost:3000/nginx_mirror/countries.geojson>
+
 -  <http://localhost:3000/nginx_mirror/regions.geojson>
+
 -  <http://localhost:3000/nginx_mirror/utlas.geojson>
