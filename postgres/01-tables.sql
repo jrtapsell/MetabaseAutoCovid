@@ -69,6 +69,7 @@ CREATE TABLE raw_nhs_history(
 );
 
 CREATE TABLE raw_nhs_latest(
+    date TIMESTAMP,
     sector_type TEXT,
     sector_key TEXT,
     sector_name TEXT,

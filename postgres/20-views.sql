@@ -84,3 +84,13 @@ CREATE TABLE all_latest as ( SELECT
     Recovered as recovered, 
     Active as active
 FROM raw_latest);
+
+CREATE TABLE nhs_history_overview as (SELECT * from raw_nhs_history where sector_type = 'overview');
+CREATE TABLE nhs_history_countries as (SELECT * from raw_nhs_history where sector_type = 'countries');
+CREATE TABLE nhs_history_regions as (SELECT * from raw_nhs_history where sector_type = 'regions');
+CREATE TABLE nhs_history_utlas as (SELECT * from raw_nhs_history where sector_type = 'utlas');
+
+CREATE TABLE nhs_latest_overview as (SELECT * from raw_nhs_latest where sector_type = 'overview');
+CREATE TABLE nhs_latest_countries as (SELECT * from raw_nhs_latest where sector_type = 'countries');
+CREATE TABLE nhs_latest_regions as (SELECT * from raw_nhs_latest where sector_type = 'regions');
+CREATE TABLE nhs_latest_utlas as (SELECT * from raw_nhs_latest where sector_type = 'utlas');

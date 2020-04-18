@@ -85,17 +85,14 @@ mkdir -p /tmp/nginx_tmp
 mkdir -p /tmp/nginx_run/nginx
 nginx -g 'daemon off;' 2> /tmp/nginx_err > /tmp/nginx_out &
 
-echo "Injecting direct database settings"
-for f in postgres_post/*.sql;
-do
-    echo "++ $f"
-    psql -v ON_ERROR_STOP=ON -f "$f" --set=covid_db=$COVID_DB --set=meta_db=$MB_DB_DBNAME 2> /tmp/silenced_err > /tmp/silenced_out
-done
+echo "Adding maps"
+py ./python/add_maps.py
 
 echo "Finished"
-
 sleep 2
+
 echo "Ready at http://localhost:3000"
 $@
+
 kill %1
 kill %2
