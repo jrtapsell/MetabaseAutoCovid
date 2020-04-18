@@ -57,6 +57,7 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Login to GitHub Packages
         run: docker login docker.pkg.github.com -u jrtapsell -p "$GITHUB_TOKEN"
       - name: Pull the image
