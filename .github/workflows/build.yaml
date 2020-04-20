@@ -88,3 +88,11 @@ jobs:
           body: To Fill Out
           draft: true
           prerelease: false
+      - name: Login to DockerHub
+        run: docker login docker.pkg.github.com --username jrtapsell --password $DOCKER_PASSWORD
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PAT }}
+      - name: Tag release latest for DockerHub
+        run: docker tag release jrtapsell/metabase_auto_covid:latest
+      - name: Push to DockerHub
+        run: docker push jrtapsell/metabase_auto_covid:latest
