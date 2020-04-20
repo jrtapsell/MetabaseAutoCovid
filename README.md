@@ -1,10 +1,15 @@
 # Metabase Automatic COVID19 data
 
-[![Known Vulnerabilities](https://snyk.io/test/github/jrtapsell/MetabaseAutoCovid/badge.svg?targetFile=python/requirements.txt)](https://snyk.io/test/github/jrtapsell/MetabaseAutoCovid?targetFile=python/requirements.txt)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5ecb24e9b5f740b6813a31c3766af6ae)](https://www.codacy.com/manual/jrtapsell/MetabaseAutoCovid?utm_source=github.com&utm_medium=referral&utm_content=jrtapsell/MetabaseAutoCovid&utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/MetabaseAutoCovid/community](https://badges.gitter.im/MetabaseAutoCovid/community.svg)](https://gitter.im/MetabaseAutoCovid/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![](https://github.com/jrtapsell/MetabaseAutoCovid/workflows/Linters/badge.svg)
 ![](https://github.com/jrtapsell/MetabaseAutoCovid/workflows/Push%20Build/badge.svg)
 ![Daily validation](https://github.com/jrtapsell/MetabaseAutoCovid/workflows/Daily%20validation/badge.svg)
+
+[![Known Vulnerabilities](https://snyk.io/test/github/jrtapsell/MetabaseAutoCovid/badge.svg?targetFile=python/requirements.txt)](https://snyk.io/test/github/jrtapsell/MetabaseAutoCovid?targetFile=python/requirements.txt)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5ecb24e9b5f740b6813a31c3766af6ae)](https://www.codacy.com/manual/jrtapsell/MetabaseAutoCovid?utm_source=github.com&utm_medium=referral&utm_content=jrtapsell/MetabaseAutoCovid&utm_campaign=Badge_Grade) 
+
+[![Join the chat at https://gitter.im/MetabaseAutoCovid/community](https://badges.gitter.im/MetabaseAutoCovid/community.svg)](https://gitter.im/MetabaseAutoCovid/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![DockerHub](https://img.shields.io/badge/DockerHub-Latest-blue.svg)](https://hub.docker.com/repository/docker/jrtapsell/metabase_auto_covid)
+[![GitHub](https://img.shields.io/badge/GitHub-View_Code-blue.svg)](https://github.com/jrtapsell/MetabaseAutoCovid)
 
 ## What is this project
 
@@ -14,7 +19,13 @@ This is a single docker image that can be spun up, that creates a Metabase insta
 
 -   Run the following command
 
+    To run from GitHub Packages:
+
         docker run --rm --tmpfs /tmp --read-only -p 3000:3000 docker.pkg.github.com/jrtapsell/metabaseautocovid/metabaseautocovid:latest
+
+    To run from DockerHub:
+
+        docker run --rm --tmpfs /tmp --read-only -p 3000:3000 jrtapsell/metabase_auto_covid:latest
 
     Once this is done, the system will start up and download the data.
 
