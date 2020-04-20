@@ -89,7 +89,7 @@ jobs:
           draft: true
           prerelease: false
       - name: Login to DockerHub
-        run: docker login docker.pkg.github.com --username jrtapsell --password $DOCKER_PASSWORD
+        run: docker login --username jrtapsell --password $DOCKER_PASSWORD
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PAT }}
       - name: Tag release latest for DockerHub
