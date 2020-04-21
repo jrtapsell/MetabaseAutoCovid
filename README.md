@@ -13,7 +13,7 @@
 
 ## What is this project
 
-This is a single docker image that can be spun up, that creates a Metabase instance with data loaded from the WHO dataset
+This is a single docker image that can be spun up, that creates a Metabase instance with data loaded from the WHO/NHS datasets
 
 ## How do I run this
 
