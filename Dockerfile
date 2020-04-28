@@ -21,7 +21,7 @@ RUN apk add \
     gcc=9.2.0-r4 \
     python3-dev=3.8.2-r0 \
     musl-dev=1.1.24-r2 \
-    openssl=1.1.1d-r3 \
+    openssl=1.1.1g-r0 \
     fontconfig=2.13.1-r2 \
     ttf-dejavu=2.37-r1 \
     --no-cache && rm -rf /var/cache/apk/*
