@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "remark": "^12.0.0",
-    "remark-lint-emphasis-marker": "^2.0.0",
-    "remark-lint-strong-marker": "^2.0.0",
-    "remark-preset-lint-recommended": "^4.0.0",
+    "remark": "^14.0.0",
+    "remark-lint-emphasis-marker": "^3.0.0",
+    "remark-lint-strong-marker": "^3.0.0",
+    "remark-preset-lint-recommended": "^6.0.0",
     "standard": "^14.3.3",
     "vfile-reporter": "^6.0.1"
   },
