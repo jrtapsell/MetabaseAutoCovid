@@ -1,4 +1,4 @@
-FROM alpine:3.11.6
+FROM alpine:3.20.2
 
 RUN mkdir /app
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
